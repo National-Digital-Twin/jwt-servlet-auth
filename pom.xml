@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ SPDX-License-Identifier: Apache-2.0
+ Originally developed by Telicent Ltd.; subsequently adapted, enhanced, and maintained by the National Digital Twin Programme.
+
+    Copyright (c) Telicent Ltd.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+
+    Modifications made by the National Digital Twin Programme (NDTP)
+    © Crown Copyright 2025. This work has been developed by the National Digital Twin Programme
+    and is legally attributed to the Department for Business and Trade (UK) as the governing entity.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>uk.gov.dbt.ndtp.public</groupId>
+    <artifactId>jwt-servlet-auth-parent</artifactId>
+    <version>1.0.2</version>
+    <modules>
+        <module>jwt-servlet-auth-lib</module>
+        <module>jwt-servlet-auth-jaxrs3</module>
+        <module>jwt-servlet-auth-servlet3</module>
+        <module>jwt-servlet-auth-servlet5</module>
+        <module>jwt-servlet-auth-aws</module>
+        <module>jwt-servlet-auth-integration-tests</module>
+    </modules>
+    <packaging>pom</packaging>
+    <name>IANode - JWT Servlet Auth - Parent</name>
+    <description>Provides a set of libraries for doing JSON Web Token (JWT) based authentication across different Java
+        Servlet runtimes
+    </description>
+    <url>https://github.com/National-Digital-Twin/jwt-servlet-auth</url>
+
+    <developers>
+        <developer>
+            <name>IANodeDevelopers</name>
+            <email>NDTP@businessandtrade.gov.uk</email>
+            <organization>Department for Business and Trade</organization>
+            <organizationUrl>https://ndtp.co.uk</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/National-Digital-Twin/jwt-servlet-auth</url>
+        </repository>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:https://github.com/National-Digital-Twin/jwt-servlet-auth</connection>
+        <developerConnection>scm:git:ssh://git@github.com/National-Digital-Twin/jwt-servlet-auth</developerConnection>
+        <url>https://github.com/National-Digital-Twin/jwt-servlet-auth</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <!--
+        Compiler Configuration
+        -->
+        <jdk.version>17</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Code Coverage Configuration -->
+        <!--
+        Controls the minimum code coverage ratio that modules which have opted into code coverage enforcement are
+        required to meet.  If a sub-module wants to increase/decrease this value they can do so by redefining this
+        property in their pom.xml
+        -->
+        <coverage.minimum>0.8</coverage.minimum>
+        <coverage.skip>false</coverage.skip>
+
+        <!-- Plugin Versions -->
+        <plugin.clean>3.1.0</plugin.clean>
+        <plugin.compiler>3.14.0</plugin.compiler>
+        <plugin.cyclonedx>2.9.1</plugin.cyclonedx>
+        <plugin.dependency>3.8.1</plugin.dependency>
+        <plugin.enforcer>3.5.0</plugin.enforcer>
+        <plugin.jacoco>0.8.12</plugin.jacoco>
+        <plugin.jar>3.4.2</plugin.jar>
+        <plugin.javadoc>3.11.2</plugin.javadoc>
+        <plugin.release>3.1.1</plugin.release>
+        <plugin.shade>3.2.4</plugin.shade>
+        <plugin.source>3.3.1</plugin.source>
+        <plugin.versions>2.18.0</plugin.versions>
+
+        <!-- Dependency Versions -->
+        <dependency.annotations2>3.0.0</dependency.annotations2>
+        <dependency.caffeine>3.2.0</dependency.caffeine>
+        <dependency.commons-io>2.18.0</dependency.commons-io>
+        <dependency.commons-lang>3.17.0</dependency.commons-lang>
+        <dependency.jackson>2.18.3</dependency.jackson>
+        <dependency.jaxrs3>4.0.0</dependency.jaxrs3>
+        <dependency.jaxrs31>4.0.0</dependency.jaxrs31>
+        <dependency.jersey3>3.1.10</dependency.jersey3>
+        <dependency.jjwt>0.12.6</dependency.jjwt>
+        <dependency.jetty12>12.0.17</dependency.jetty12>
+        <dependency.mockito>5.16.1</dependency.mockito>
+        <dependency.servlet3>4.0.1</dependency.servlet3>
+        <dependency.servlet5>6.1.0</dependency.servlet5>
+        <dependency.slf4j>2.0.17</dependency.slf4j>
+        <dependency.testng>7.11.0</dependency.testng>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Servlet Dependencies -->
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>${dependency.servlet5}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${dependency.servlet3}</version>
+            </dependency>
+
+            <!-- JAX-RS Dependencies -->
+            <dependency>
+                <groupId>jakarta.ws.rs</groupId>
+                <artifactId>jakarta.ws.rs-api</artifactId>
+                <version>${dependency.jaxrs3}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.annotation</groupId>
+                <artifactId>jakarta.annotation-api</artifactId>
+                <version>${dependency.annotations2}</version>
+            </dependency>
+
+            <!-- JWT Related Dependencies -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${dependency.jjwt}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${dependency.jjwt}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${dependency.jjwt}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!--
+            NB: The jjwt library provides compatibility back to JDK 8 which means using rather old Jackson versions
+
+            This can lead to runtime dependency conflicts if an application that depends on these libraries also has its
+            own dependency on Jackson.  By explicitly declaring modern Jackson versions we aim to avoid this.
+            -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${dependency.jackson}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${dependency.jackson}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${dependency.jackson}</version>
+            </dependency>
+
+            <!-- Caffeine for caching -->
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${dependency.caffeine}</version>
+            </dependency>
+
+            <!-- TestNG and Mockito for testing -->
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${dependency.testng}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${dependency.mockito}</version>
+            </dependency>
+
+            <!-- Need a JAX-RS runtime for testing -->
+            <dependency>
+                <groupId>org.glassfish.jersey.containers</groupId>
+                <artifactId>jersey-container-grizzly2-servlet</artifactId>
+                <version>${dependency.jersey3}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!--
+            SLF4J
+            -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${dependency.slf4j}</version>
+            </dependency>
+
+            <!-- Apache Commons Libraries for Utilities -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${dependency.commons-lang}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${dependency.commons-io}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+    <build>
+
+        <plugins>
+            <!-- Enforcer Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${plugin.enforcer}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.8.1</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>17,</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${plugin.compiler}</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <release>${jdk.version}</release>
+                </configuration>
+            </plugin>
+
+            <!-- JAR Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${plugin.jar}</version>
+                <executions>
+                    <execution>
+                        <id>create-test-jar</id>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Source Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${plugin.source}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Javadoc Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${plugin.javadoc}</version>
+                <configuration />
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>javadoc</goal>
+                            <goal>jar</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- GPG Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.7</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.cyclonedx</groupId>
+                <artifactId>cyclonedx-maven-plugin</artifactId>
+                <version>${plugin.cyclonedx}</version>
+                <executions>
+                    <execution>
+                        <id>build-sbom-cyclonedx</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>makeAggregateBom</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <outputName>${project.artifactId}-${project.version}-bom</outputName>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <!-- Release Plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${plugin.release}</version>
+                </plugin>
+
+                <!-- Code Coverage Plugins -->
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${plugin.jacoco}</version>
+                    <executions>
+                        <execution>
+                            <id>prepare-agent</id>
+                            <phase>process-test-classes</phase>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>require-test-coverage</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <rule>
+                                        <element>BUNDLE</element>
+                                        <limits>
+                                            <limit>
+                                                <counter>CLASS</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>${coverage.minimum}</minimum>
+                                            </limit>
+                                            <limit>
+                                                <counter>INSTRUCTION</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>${coverage.minimum}</minimum>
+                                            </limit>
+                                            <limit>
+                                                <counter>METHOD</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>${coverage.minimum}</minimum>
+                                            </limit>
+                                            <limit>
+                                                <counter>BRANCH</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>${coverage.minimum}</minimum>
+                                            </limit>
+                                            <limit>
+                                                <counter>LINE</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>${coverage.minimum}</minimum>
+                                            </limit>
+                                            <limit>
+                                                <counter>COMPLEXITY</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>${coverage.minimum}</minimum>
+                                            </limit>
+                                        </limits>
+                                    </rule>
+                                </rules>
+                                <haltOnFailure>true</haltOnFailure>
+                                <skip>${coverage.skip}</skip>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${plugin.dependency}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>go-offline</goal>
+                            </goals>
+                            <configuration>
+                                <!--
+                                When going offline don't try to resolve internal project dependencies.  This is
+                                primarily only a problem when the version gets bumped.  However, in a CI/CD environment
+                                this is always needed.
+                                -->
+                                <excludeGroupIds>uk.gov.dbt.ndtp.public</excludeGroupIds>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- Version Plugin -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${plugin.versions}</version>
+                    <configuration>
+                        <ignoredVersions>.*[-\.]M.*,.*-alpha.*,.*-beta.*,.*-RC.*,.*rc.*</ignoredVersions>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
