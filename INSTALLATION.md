@@ -1,6 +1,5 @@
 # Installation
-**Repository:** `jwt-servlet-auth` 
-
+**Repository:** `jwt-servlet-auth`  
 **Description:** `This file details the various functionalities, required dependencies and configurations for JWT Servlet Auth.` 
 
 <!-- SPDX-License-Identifier: OGL-UK-3.0 -->
