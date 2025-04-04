@@ -1,8 +1,8 @@
 # Open-Source Compliance & Code Audit Report
 
 **Repository:** `jwt-servlet-auth`  
-**Date of Last Audit:** `[YYYY-MM-DD]`  
-**Reviewed By:** `[NDTP Supplier]` 
+**Date of Last Audit:** `2025-03-21`  
+**Reviewed By:** `Kainos Software` 
 <!-- SPDX-License-Identifier: OGL-UK-3.0 -->
 
 ---
@@ -17,47 +17,42 @@ a comprehensive audit using FOSSology and Copyleaks to verify:
 ## Tools Used for the Audit
 | Tool | Purpose | Scan Date |
 |------|---------|----------|
-| FOSSology | Open-source license compliance scanner | `[YYYY-MM-DD]` |
-| SPDX License Analysis | Software package data exchange and license detection | `[YYYY-MM-DD]` |
-| Copyleaks | AI-driven plagiarism and duplicate code detection | `[YYYY-MM-DD]` |
-| Manual Review | Compliance team manually reviewed flagged files | `[YYYY-MM-DD]` |
+| FOSSology | Open-source license compliance scanner | `2025-03-21` |
+| Copyleaks | AI-driven plagiarism and duplicate code detection | `2025-03-21` |
 ---
-## License Compliance Check (FOSSology and SPDX)
-### Third-Party Dependencies and Attribution
-| Component | License | Attribution Required? | Compliance Verified? |
-|-----------|---------|----------------------|----------------------|
-| `[Dependency Name]` | `[License Type]` | `[Yes/No]` | `[Yes/No]` |
-
+## License Compliance Check (FOSSology)
 Issues Identified:
-- `[Describe any licensing issues found]`
-- Action Taken: `[Describe resolution steps]`
 
-All required attributions have been added to [NOTICE.md](./NOTICE.md).
+- No issues found
 
----
+All required attributions have been added to [NOTICE.md](NOTICE.md)
 
 ## Duplicate Code and Attribution Check (Copyleaks)
 
-| Scanned Files | Plagiarism Risk Detected? | Source Match | Resolution |
-|--------------|-------------------------|-------------|-----------|
-| `[Filename]` | `[Yes/No]` | `[Source]` | `[Resolution]` |
+| Scanned Files | Plagiarism Risk Detected? | Source Match                                                                                         | Resolution |
+|--------------|---------------------------|------------------------------------------------------------------------------------------------------|-----------|
+| `HelloWorldApplication.java ` | `Yes`                     | [source](https://srinichekuri.wordpress.com/2016/01/17/step-by-step-guide-hello-world-rest-service/) | Matches parts of code from a tutorial  |
+
 
 
 Issues Identified and Resolutions:
-- `[Describe flagged instances and resolutions]`  
+- None required
 
 All unintentional code reuse has been resolved or attributed correctly.
+
 
 ---
 
 ## Final Compliance Status
 
-After running FOSSology, SPDX, and Copyleaks scans, this repository is:
+After running FOSSology and Copyleaks scans, this repository is:
 
-- `[Fully compliant / Issues detected]`
-- `[Necessary actions taken / Further review required]`
+- Fully Compliant
+- Necessary Actions Taken
 
-Next Steps:
-- `[Required follow-up actions]`
+
+Next Steps:  
+- None required
 
 Maintained by the National Digital Twin Programme.
+
