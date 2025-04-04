@@ -61,7 +61,7 @@ mvn clean install
 Refer to [INSTALLATION.md](INSTALLATION.md) for more details, including required dependencies and setup configurations.
 
 ## Features
-- **Core functionality**
+- **Key functionality**
   - Enables secure JWT-based Bearer authentication for Servlet 3 (javax.servlet), Servlet 5 (jakarta.servlet), and JAX-RS 3 (jakarta.ws.rs) applications. 
   - Provides `JwtAuthFilter`, which must be added based on the servlet runtime. 
   - Implements authentication via the `JwtAuthenticationEngine`.
