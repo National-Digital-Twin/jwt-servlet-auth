@@ -38,10 +38,10 @@ Concrete implementations of both are provided, see [Usage](INSTALLATION.md#usage
 ## Prerequisites
 Before using this repository, ensure you have the following dependencies installed:
 - **Required Tooling:**
-    - JDK 17+
+    - JDK 17
     - Apache Maven 3.8.1+
 - **System Requirements:**
-    - JDK 17+
+    - JDK 17
     - Apache Maven 3.8.1+
 
 ## Quick Start
